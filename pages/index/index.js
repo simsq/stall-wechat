@@ -89,8 +89,8 @@ Page({
         id: item.id,
         latitude: item.latitude,
         longitude: item.longitude,
-        width: 32,
-        height: 32,
+        width: 40,
+        height: 40,
         iconPath: '../../images/index/biaoji.png',
         // callout: {
         //   content: item.projectName,

@@ -1,4 +1,4 @@
-<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}" style="overflow:hidden">
+<cu-custom bgColor="bg-yellow" isBack="{{true}}" style="overflow:hidden">
   <view slot="backText">返回</view>
   <view slot="content">上报地摊</view>
 </cu-custom>
@@ -6,10 +6,10 @@
   <view class="padding">请上报真实数据,让美好生活常伴你我</view>
 </view>
 <form>
-  <view class="cu-form-group margin-top">
+  <!-- <view class="cu-form-group margin-top">
     <view class="title">当前坐标</view>
     <input placeholder="{{baiduLatitude}},{{baiduLongitude}}" disabled="true"></input>
-  </view>
+  </view> -->
 
   <view class="cu-form-group margin-top">
     <view class="title">当前位置</view>
@@ -47,5 +47,5 @@
   </view>
 </form>
 <view class="padding flex flex-direction">
-  <button bindtap="save" open-type="getUserInfo" class="cu-btn bg-blue margin-tb-sm lg">提交</button>
+  <button bindtap="save" open-type="getUserInfo" class="cu-btn bg-yellow margin-tb-sm lg">提交</button>
 </view>

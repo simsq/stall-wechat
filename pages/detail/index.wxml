@@ -1,4 +1,4 @@
-<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}" style="overflow:hidden">
+<cu-custom bgColor="bg-yellow" isBack="{{true}}" style="overflow:hidden">
   <view slot="backText">返回</view>
   <view slot="content">地摊详情</view>
 </cu-custom>

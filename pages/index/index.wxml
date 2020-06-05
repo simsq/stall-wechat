@@ -1,4 +1,4 @@
-<cu-custom bgColor="bg-blue">
+<cu-custom bgColor="bg-yellow">
   <view slot="content">周边地摊</view>
 </cu-custom>
 <view class="cu-bar bg-white search fixed" style="top:{{CustomBar}}px; ">
@@ -6,7 +6,7 @@
     <input type="text " placeholder="请输入您想吃的美食 " value="{{queryKey}}" bindinput="inputkey"></input>
   </view>
   <view class="action">
-    <button style="width:100%" class="cu-btn bg-blue shadow-blur round " bindtap="query">搜索</button>
+    <button style="width:100%" class="cu-btn bg-yellow shadow-blur round " bindtap="query">搜索</button>
   </view>
 </view>
 <view class="container-layout">
