@@ -1,0 +1,51 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}" style="overflow:hidden">
+  <view slot="backText">返回</view>
+  <view slot="content">上报地摊</view>
+</cu-custom>
+<view class="flex-sub text-center">
+  <view class="padding">请上报真实数据,让美好生活常伴你我</view>
+</view>
+<form>
+  <view class="cu-form-group margin-top">
+    <view class="title">当前坐标</view>
+    <input placeholder="{{baiduLatitude}},{{baiduLongitude}}" disabled="true"></input>
+  </view>
+
+  <view class="cu-form-group margin-top">
+    <view class="title">当前位置</view>
+    <!-- 自选地址-->
+    <!-- <picker mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}">
+      <view class="picker">
+        {{region[0]}}，{{region[1]}}，{{region[2]}}
+      </view>
+    </picker> -->
+    <input placeholder="{{thisAddress}}" disabled="true"></input>
+  </view>
+  <view class="cu-bar bg-white">
+    <view class="action">
+      上传现场图
+    </view>
+    <view class="action">
+      {{imgList.length}}/4
+    </view>
+  </view>
+  <view class="cu-form-group">
+    <view class="grid col-4 grid-square flex-sub">
+      <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+        <image src='{{imgList[index]}}' mode='aspectFill'></image>
+        <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+          <text class="cuIcon-close"></text>
+        </view>
+      </view>
+      <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+        <text class="cuIcon-cameraadd"></text>
+      </view>
+    </view>
+  </view>
+  <view class="cu-form-group align-start">
+    <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaBInput" placeholder="请对当前摊位简单描述一下"></textarea>
+  </view>
+</form>
+<view class="padding flex flex-direction">
+  <button bindtap="save" open-type="getUserInfo" class="cu-btn bg-blue margin-tb-sm lg">提交</button>
+</view>

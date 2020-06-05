@@ -1,0 +1,14 @@
+/* pages/detail/index.wxss */
+
+.cu-bar .action {
+  margin-left: 23rpx;
+  font-size: 30rpx;
+}
+
+.cu-bar .action {
+  display: flex;
+  align-items: center;
+  height: 87%;
+  justify-content: center;
+  max-width: 90%;
+}

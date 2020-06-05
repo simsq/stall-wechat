@@ -1,0 +1,44 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/shangbao/index",
+    "pages/detail/index"
+  ],
+  "tabBar": {
+    "cilor": "#000000",
+    "selectedColor": "#1296db",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "iconPath": "images/tabBar/02.png",
+        "selectedIconPath": "images/tabBar/01.png",
+        "pagePath": "pages/index/index",
+        "text": "附近"
+      },
+      {
+        "iconPath": "images/tabBar/04.png",
+        "selectedIconPath": "images/tabBar/03.png",
+        "pagePath": "pages/index/index",
+        "text": "地摊王"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "BingRun",
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "white"
+  },
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom"
+  },
+  "style": "v2",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "sitemapLocation": "sitemap.json"
+}
