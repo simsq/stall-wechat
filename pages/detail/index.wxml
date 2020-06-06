@@ -13,8 +13,8 @@
 <view class="cu-list menu sm-border margin-top">
   <view class="cu-item" bindtap="daohang">
     <view class="content">
-      <text class="cuIcon-location text-red"></text>
-      <text class="text-grey">地址</text>
+      <text class="cuIcon-location text-yellow"></text>
+      <text class="text-grey">导航</text>
     </view>
     <view class="action">
       <text class="text-grey">上海市徐汇区古美路1528号</text>
@@ -23,7 +23,7 @@
 </view>
 <view class="cu-bar bg-white solid-bottom margin-top">
   <view class="action">
-    <text class="cuIcon-title text-orange "></text> 评论列表
+    <text class="cuIcon-title text-orange text-yellow "></text> 评论列表
   </view>
 </view>
 <view class="cu-list menu-avatar comment solids-top">

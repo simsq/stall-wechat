@@ -24,6 +24,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+
+  },
+  onShow: function() {
     // 实例化API核心类
     qqmapsdk = new QQMapWX({
       key: 'IVCBZ-F3N2P-Z3BDR-L3QCP-RWXFH-TOFZD'
@@ -53,16 +56,16 @@ Page({
       type: 'gcj02',
       isHighAccuracy: true,
       success: function(res) {
-        that.setData({
-          baiduLatitude: res.latitude,
-          baiduLongitude: res.longitude
-        });
+        // that.setData({
+        //   baiduLatitude: res.latitude,
+        //   baiduLongitude: res.longitude
+        // });
         qqmapsdk.reverseGeocoder({
           location: {
             latitude: res.latitude,
             longitude: res.longitude
           },
-          success: function(addressRes) {
+          success: function(addressRes) {          
             var address = addressRes.result.address;
             that.setData({
               thisAddress: address

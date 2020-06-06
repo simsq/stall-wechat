@@ -3,7 +3,10 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/shangbao/index",
-    "pages/detail/index"
+    "pages/detail/index",
+    "pages/about/home/index",
+    "pages/about/info/index",
+    "pages/ranking/index"
   ],
   "tabBar": {
     "cilor": "#000000",
@@ -19,8 +22,14 @@
       {
         "iconPath": "images/tabBar/04.png",
         "selectedIconPath": "images/tabBar/03.png",
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/ranking/index",
         "text": "地摊王"
+      },
+      {
+        "iconPath": "images/tabBar/06.png",
+        "selectedIconPath": "images/tabBar/05.png",
+        "pagePath": "pages/about/home/index",
+        "text": "我的"
       }
     ]
   },

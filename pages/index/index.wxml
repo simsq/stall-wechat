@@ -21,7 +21,6 @@
 
   <cover-view class='shangbao'>
     <cover-image bindtap='shangbao' src='../../images/index/shangbao.png'></cover-image>
-  </cover-view> -->
-
+  </cover-view>
   <view class='bottom-layout' id='bottom-layout'></view>
 </view>

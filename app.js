@@ -1,7 +1,7 @@
 //app.js
 
 App({
-  onLaunch: function() {
+  onLaunch: function() {     
     //登录
     // wx.qy.login({
     //   success: res => {

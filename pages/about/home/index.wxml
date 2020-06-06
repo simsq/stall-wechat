@@ -1,0 +1,25 @@
+<scroll-view scroll-y class="scrollPage">
+  <view class="UCenter-bg">
+  </view>
+  <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/about/info/index" hover-class="none">
+        <image src="https://clpres.oss-cn-shanghai.aliyuncs.com/cip/v6/qiu.png" class="png" mode="aspectFit"></image>
+        <text class="text-grey">关于地摊生活</text>
+      </navigator>
+    </view>
+    <view class="cu-item arrow">
+      <view class="content" bindtap="showQrcode">
+        <text class="cuIcon-appreciatefill text-red"></text>
+        <text class="text-grey">赞赏支持</text>
+      </view>
+    </view>
+    <view class="cu-item arrow">
+      <button class="cu-btn content" open-type="feedback">
+        <text class="cuIcon-writefill text-cyan"></text>
+        <text class="text-grey">意见反馈</text>
+      </button>
+    </view>
+  </view>
+  <view class="cu-tabbar-height"></view>
+</scroll-view>

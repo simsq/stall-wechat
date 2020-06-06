@@ -1,0 +1,24 @@
+<cu-custom bgColor="bg-yellow" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">关于</view>
+</cu-custom>
+<view class='margin-xl bg-white padding-xl radius shadow-lg'>
+  <view class='text-center margin-bottom text-lg  text-grey'>关于地摊小程序</view>
+  <view class='text-content'>
+    <view>Hi！感谢您使用地摊周边小程序！该项目是我个人开发的一款娱乐性小程序。</view>
+    <view class='margin-top-sm'></view>
+    <text>主要有如下功能：
+      <br/>1.查看到附件的地摊
+      <br/>2.上传自己附近的地摊，后台审核真实性后就会在地图上展示（主要是AI计算现场图片图像相似度）
+      <br/>3.约某个地摊下面评论过的小哥哥小姐姐一起吃麻辣烫
+      <br/>4.还有一个地摊王排行榜功能</text>
+
+    <view class='margin-top-sm'></view>
+    <text>地摊王计算公式：
+      <br/>1.用户上传地摊+5分，用户签到(评论)+10分，24小时内最高可获得15分
+      <br/>2.分数最高者为地摊王（有区域地摊王，全城/全省地摊王，以及全国地摊王排名）
+      <br/>3.如果你每次去地摊消费后在这里签到（评论一下）那么久而久之你就是当之无愧的地摊王者
+   </text>
+  </view>
+  <view class='margin-top-sm'>响应总理政策，复苏地摊经济减轻就业压力同时希望跟我一样的年轻人夜生活更丰富美好，晚上约着小姐姐一起撸个串看个电影，不要像我一样天天在家看书写代码</view>
+</view>
