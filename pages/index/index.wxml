@@ -24,3 +24,17 @@
   </cover-view>
   <view class='bottom-layout' id='bottom-layout'></view>
 </view>
+
+<view class="cu-modal {{IsShow==true?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">授权确认</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      <button class="cu-btn round bg-yellow" bindtap="hideModal" open-type='getUserInfo'>同意</button>
+    </view>
+  </view>
+</view>

@@ -56,17 +56,43 @@ Page({
     longitude: '',
     latitude: '',
     //中心指针
-    controls: []
+    controls: [],
+    //显示窗户
+    IsShow: false
   },
   onLoad: function(options) {
     this.createMarker();
+    this.getAllRemark();
   },
 
   onShow: function() {
+    var that = this;
+    //判断用户是否同意了授权，如果没有就弹出授权窗口
+    wx.getSetting({
+      success(res) {
+        if (!res.authSetting['scope.userInfo']) {
+          that.setData({
+            IsShow: true
+          })
+        }
+      }
+    })
     this.changeMapHeight();
     this.requestLocation();
   },
+  //关闭弹出框
+  hideModal: function() {
+    this.setData({
+      IsShow: false
+    })
+  },
 
+  //获取所有地摊
+  getAllRemark() {
+    api.get("/stall/list", {}).then(res => {
+
+    });
+  },
   markertap: function(e) {
     var that = this;
     wx.navigateTo({

@@ -6,9 +6,9 @@
     </view>
 
     <view class="rank__item rank__item--first">
-      <image lazy-load="true" class="rank__icon rank__icon--first" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10002.jpg" />
+      <image lazy-load="true" class="rank__icon rank__icon--first" src="{{userInfo.avatarUrl}}" />
       <view class="rank__info">
-        <view class="rank__name">阿强哥</view>
+        <view class="rank__name">{{userInfo.nickName}}</view>
         <view class="rank__detail">全国排名第 5 上海地区排名第 3 当之无愧的地摊王</view>
       </view>
     </view>
@@ -16,7 +16,9 @@
   <view class="bg-white">
     <view class="rank__item" wx:for="{{rankList}}" wx:for-item="rank" wx:for-index="index" wx:key="id" wx:if="{{index > 0}}" data-index="{{index}}" bindtap="tapRankItem">
       <view class="rank__no">{{index}}</view>
-      <view class="cu-avatar round lg" style="background-image:url({{rank.icon}});"></view>
+      <view class="cu-avatar round lg" style="background-image:url({{rank.icon}});">
+        <view class="cu-tag badge  cuIcon-female bg-pink"></view>
+      </view>
       <view class="content rank__info">
         <view class="{{index<4?'text-bg':''}}">
           <text>{{rank.name}}</text>

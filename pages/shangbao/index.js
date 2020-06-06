@@ -65,7 +65,7 @@ Page({
             latitude: res.latitude,
             longitude: res.longitude
           },
-          success: function(addressRes) {          
+          success: function(addressRes) {
             var address = addressRes.result.address;
             that.setData({
               thisAddress: address
