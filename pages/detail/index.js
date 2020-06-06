@@ -55,6 +55,22 @@ Page({
       address: '上海市徐汇区古美路1528号'
     })
   },
+  //签到
+  qiandao: function(e) {
+    var code = e.currentTarget.dataset.code;
+    this.setData({
+      modalName2: 'show'
+    })
+  },
+  //签到内容
+  textareaAInput2: function(e) {
+    console.log(e.detail.value);
+  },
+  //邀请ta内容
+  textareaAInput: function(e) {
+    console.log(e.detail.value);
+  },
+
   //约ta
   yueta: function(e) {
     this.setData({
@@ -63,7 +79,8 @@ Page({
   },
   hideModal: function() {
     this.setData({
-      modalName: ''
+      modalName: '',
+      modalName2: ''
     })
   },
   /**

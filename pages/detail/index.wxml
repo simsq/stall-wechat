@@ -22,9 +22,8 @@
   </view>
 </view>
 <view class="cu-bar bg-white solid-bottom margin-top">
-  <view class="action">
-    <text class="cuIcon-title text-orange text-yellow "></text> 评论列表
-  </view>
+  <button bindtap="qiandao" data-code="202006061542" class="cu-btn round bg-yellow text-center">
+    <text class="cuIcon-location"></text>签到</button>
 </view>
 <view class="cu-list menu-avatar comment solids-top">
   <view class="cu-item">
@@ -153,7 +152,26 @@
     </view>
   </view>
 </view>
-
+<!--签到对话框-->
+<view class="cu-modal  {{modalName2}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">签到</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl ">
+      <textarea style="width:80%" maxlength="-1" bindinput="textareaAInput2" placeholder="输入你想说的话，留住时光"></textarea>
+    </view>
+    <view class="cu-bar bg-white justify-end">
+      <view class="action">
+        <button class="cu-btn line-green text-green" bindtap="hideModal">取消</button>
+        <button class="cu-btn bg-green margin-left" bindtap="hideModal">确定</button>
+      </view>
+    </view>
+  </view>
+</view>
 <!--标签-->
 <!-- <view class="cu-bar bg-white solid-bottom margin-top">
   <view class="action">
