@@ -1,6 +1,6 @@
 <cu-custom bgColor="bg-yellow" isBack="{{true}}" style="overflow:hidden">
   <view slot="backText">返回</view>
-  <view slot="content">地摊详情</view>
+  <view slot="content">城管来了</view>
 </cu-custom>
 <!-- 图片展示 -->
 <swiper style="margin-top:2px" class="screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
@@ -17,7 +17,7 @@
       <text class="text-grey">导航</text>
     </view>
     <view class="action">
-      <text class="text-grey">上海市徐汇区古美路1528号</text>
+      <text class="text-grey">{{stallInfo.address}}</text>
     </view>
   </view>
 </view>
@@ -26,101 +26,23 @@
     <text class="cuIcon-location"></text>签到</button>
 </view>
 <view class="cu-list menu-avatar comment solids-top">
-  <view class="cu-item">
-    <view class="cu-avatar round" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10002.jpg);">
-      <view class="cu-tag badge  cuIcon-male bg-blue"></view>
+  <view class="cu-item" wx:for="{{commentList}}" wx:key>
+    <view class="cu-avatar round" style="background-image:url({{item.avatarUrl}});">
+      <view class="cu-tag badge {{item.gender==1?'cuIcon-male bg-blue':'cuIcon-female bg-pink'}} "></view>
     </view>
     <view class="content">
-      <view class="text-grey">阿强哥</view>
+      <view class="text-grey">{{item.nickName}}</view>
       <view class="text-gray text-content text-df">
-        我已天理为凭，踏入这片荒芜，不再受凡人的枷锁遏制。我已天理为凭，踏入这片荒芜，不再受凡人的枷锁遏制。
+        {{item.remark}}
       </view>
       <view class="margin-top-sm flex justify-between">
-        <view class="text-gray text-df">2020年06月05日</view>
+        <view class="text-gray text-df"> {{item.createTime}}</view>
         <view>
           <view class="cu-capsule round">
             <view class="cu-tag bg-red">
               <text class="cuIcon-likefill"></text>
             </view>
             <view class="cu-tag line-red" bindtap="yueta">
-              约 ta
-            </view>
-          </view>
-          <!-- <text class="cuIcon-appreciatefill text-red"></text>
-          <text class="cuIcon-messagefill text-gray margin-left-sm"></text> -->
-        </view>
-      </view>
-    </view>
-  </view>
-  <view class="cu-item">
-    <view class="cu-avatar round" style="background-image:url(https://ossweb-img.qq.com/images/lol/img/champion/Morgana.png);">
-      <view class="cu-tag badge  cuIcon-female bg-pink"></view>
-    </view>
-    <view class="content">
-      <view class="text-grey">小姐姐</view>
-      <view class="text-gray text-content text-df">
-        我欲乘风归去又恐琼楼玉宇
-      </view>
-      <view class="margin-top-sm flex justify-between">
-        <view class="text-gray text-df">2020年06月05日</view>
-        <view>
-          <view class="cu-capsule round">
-            <view class="cu-tag bg-red">
-              <text class="cuIcon-likefill"></text>
-            </view>
-            <view class="cu-tag line-red">
-              约 ta
-            </view>
-          </view>
-          <!-- <text class="cuIcon-appreciatefill text-red"></text>
-          <text class="cuIcon-messagefill text-gray margin-left-sm"></text> -->
-        </view>
-      </view>
-    </view>
-  </view>
-  <view class="cu-item">
-    <view class="cu-avatar round" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10003.jpg);">
-      <view class="cu-tag badge  cuIcon-female bg-pink"></view>
-    </view>
-    <view class="content">
-      <view class="text-grey">小姐姐</view>
-      <view class="text-gray text-content text-df">
-        起舞弄清影何似在人间
-      </view>
-      <view class="margin-top-sm flex justify-between">
-        <view class="text-gray text-df">2020年06月05日</view>
-        <view>
-          <view class="cu-capsule round">
-            <view class="cu-tag bg-red">
-              <text class="cuIcon-likefill"></text>
-            </view>
-            <view class="cu-tag line-red">
-              约 ta
-            </view>
-          </view>
-          <!-- <text class="cuIcon-appreciatefill text-red"></text>
-          <text class="cuIcon-messagefill text-gray margin-left-sm"></text> -->
-        </view>
-      </view>
-    </view>
-  </view>
-  <view class="cu-item">
-    <view class="cu-avatar round" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10004.jpg);">
-      <view class="cu-tag badge  cuIcon-female bg-pink"></view>
-    </view>
-    <view class="content">
-      <view class="text-grey">小姐姐</view>
-      <view class="text-gray text-content text-df">
-        起舞弄清影何似在人间
-      </view>
-      <view class="margin-top-sm flex justify-between">
-        <view class="text-gray text-df">2020年06月05日</view>
-        <view>
-          <view class="cu-capsule round">
-            <view class="cu-tag bg-red">
-              <text class="cuIcon-likefill"></text>
-            </view>
-            <view class="cu-tag line-red">
               约 ta
             </view>
           </view>
@@ -162,12 +84,12 @@
       </view>
     </view>
     <view class="padding-xl ">
-      <textarea style="width:80%" maxlength="-1" bindinput="textareaAInput2" placeholder="输入你想说的话，留住时光"></textarea>
+      <textarea style="width:80%" maxlength="-1" value="{{qiandaoText}}" bindinput="textareaAInput2" placeholder="输入你想说的话，留住时光"></textarea>
     </view>
     <view class="cu-bar bg-white justify-end">
       <view class="action">
         <button class="cu-btn line-green text-green" bindtap="hideModal">取消</button>
-        <button class="cu-btn bg-green margin-left" bindtap="hideModal">确定</button>
+        <button class="cu-btn bg-green margin-left" bindtap="qiandaoSave">确定</button>
       </view>
     </view>
   </view>

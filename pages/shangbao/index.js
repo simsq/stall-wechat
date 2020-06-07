@@ -1,4 +1,5 @@
 const app = getApp();
+import api from '../../utils/request';
 var locationConvert = require('../../utils/WSCoordinate.js')
 var bmap = require('../../utils/bmap-wx.js');
 var QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
@@ -14,9 +15,10 @@ Page({
     CustomBar: app.globalData.CustomBar,
     imgList: [],
     description: "",
+    name: "",
     thisAddress: "",
-    baiduLatitude: 0,
-    baiduLongitude: 0,
+    latitude: 0,
+    longitude: 0,
     region: [],
   },
 
@@ -34,9 +36,17 @@ Page({
     var that = this;
     that.convertAddress();
   },
+
+  //地摊名字
+  nameInput(e) {
+    this.setData({
+      name: e.detail.value
+    })
+  },
+  //描述
   textareaBInput(e) {
     this.setData({
-      textareaBValue: e.detail.value
+      description: e.detail.value
     })
   },
 
@@ -56,10 +66,10 @@ Page({
       type: 'gcj02',
       isHighAccuracy: true,
       success: function(res) {
-        // that.setData({
-        //   baiduLatitude: res.latitude,
-        //   baiduLongitude: res.longitude
-        // });
+        that.setData({
+          latitude: res.latitude,
+          longitude: res.longitude
+        });
         qqmapsdk.reverseGeocoder({
           location: {
             latitude: res.latitude,
@@ -106,8 +116,7 @@ Page({
   ChooseImage() {
     wx.chooseImage({
       count: 4, //默认9
-      sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album'], //从相册选择
+      sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有       
       success: (res) => {
         if (this.data.imgList.length != 0) {
           this.setData({
@@ -146,19 +155,65 @@ Page({
   //保存用户上报数据
   save: function() {
     var that = this;
-    var imgList = that.data.imgList;
-    wx.login({
-      success(res) {
-        if (res.code) {
-          //请后台换取OpenId
-        }
+    api.post("/stall/add", {
+      'name': that.data.name,
+      'description': that.data.description,
+      'thisAddress': that.data.thisAddress,
+      'latitude': that.data.latitude,
+      'longitude': that.data.longitude,
+    }).then(res => {
+      if (res.isSuccess) {
+        that.saveImages(res.data);
+        return false;
+
+      } else {
+        wx.showModal({
+          title: '系统提示',
+          content: res.message,
+        })
       }
-    })
-    // wx.getUserInfo({
-    //   success: function(res) {
-    //     debugger;
-    //   }
-    // })
+    });
+  },
+  saveImages: function(stallCode) {
+    var that = this;
+
+    var count = that.data.imgList.length;
+    var sucessCount = 0;
+    that.data.imgList.forEach(el => {
+      wx.uploadFile({
+        url: app.globalData.host + '/stall/addimages',
+        filePath: el,
+        name: 'files',
+        header: {
+          'code': stallCode
+        },
+        success: function(res) {
+          sucessCount++;
+          if (sucessCount == count) {
+            wx.showModal({
+              title: '系统提示',
+              content: '恭喜您上报成功，审核通过后将会在地图上展示',
+              success(res) {
+                if (res.confirm) {
+                  wx.switchTab({
+                    url: '../index/index',
+                  })
+                } else if (res.cancel) {
+                  wx.switchTab({
+                    url: '../index/index',
+                  })
+                }
+              }
+            })
+          }
+        },
+        fail: function(res) {
+
+        }
+      })
+    });
+
+
   },
   /**
    * 用户点击右上角分享

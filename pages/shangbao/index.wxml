@@ -21,6 +21,10 @@
     </picker> -->
     <input placeholder="{{thisAddress}}" disabled="true"></input>
   </view>
+  <view class="cu-form-group margin-top">
+    <view class="title">地摊名字</view>
+    <input placeholder="随便起个名吧" bindinput="nameInput"></input>
+  </view>
   <view class="cu-bar bg-white">
     <view class="action">
       上传现场图
@@ -47,5 +51,5 @@
   </view>
 </form>
 <view class="padding flex flex-direction">
-  <button bindtap="save" open-type="getUserInfo" class="cu-btn bg-yellow margin-tb-sm lg">提交</button>
+  <button bindtap="save" class="cu-btn bg-yellow margin-tb-sm lg">提交</button>
 </view>

@@ -5,43 +5,7 @@ var mapId = 'myMap';
 var bottomHeight = 0;
 var windowHeight = 0;
 var windowWidth = 0;
-var resultData = [{
-    'id': 11,
-    'latitude': 22.71682,
-    'longitude': 121.43687,
-    'projectName': '1'
-  },
-  {
-    'id': 12,
-    'latitude': 31.18826,
-    'longitude': 114.0809,
-    'projectName': '2'
-  },
-  {
-    'id': 13,
-    'latitude': 31.188301443809667,
-    'longitude': 121.43679594938776,
-    'projectName': '3'
-  },
-  {
-    'id': 1,
-    'latitude': 31.16407931241353,
-    'longitude': 121.39878007118962,
-    'projectName': '4'
-  },
-  {
-    'id': 2,
-    'latitude': 31.164695739746094,
-    'longitude': 121.39774322509766,
-    'projectName': '5'
-  },
-  {
-    'id': 4,
-    'latitude': 23.71682,
-    'longitude': 114.0809,
-    'projectName': '6'
-  }
-]
+var resultData = []
 Page({
   data: {
     StatusBar: app.globalData.StatusBar,
@@ -58,10 +22,10 @@ Page({
     //中心指针
     controls: [],
     //显示窗户
-    IsShow: false
+    IsShow: false,
+    SearchKey: '',
   },
   onLoad: function(options) {
-    this.createMarker();
     this.getAllRemark();
   },
 
@@ -89,8 +53,14 @@ Page({
 
   //获取所有地摊
   getAllRemark() {
-    api.get("/stall/list", {}).then(res => {
-
+    var that = this;
+    api.get("/stall/list?SearchKey=" + that.data.SearchKey).then(res => {
+      if (res.isSuccess) {
+        // that.setData({
+        resultData = res.data
+        that.createMarker();
+        // })
+      }
     });
   },
   markertap: function(e) {
@@ -112,7 +82,7 @@ Page({
     var markerList = [];
     resultData.forEach(item => {
       markerList.push({
-        id: item.id,
+        id: item.code,
         latitude: item.latitude,
         longitude: item.longitude,
         width: 40,
@@ -233,10 +203,12 @@ Page({
   },
   //打开详情页
   goDetail: function(e) {
-    console.log(e);
     var that = this;
+    var stallCode = e.markerId;
+    var stallInfo = resultData.find(x => x.code == stallCode);
+    var parameter = 'stallCode=' + stallInfo.code + '&address=' + stallInfo.address + '&latitude=' + stallInfo.latitude + '&longitude=' + stallInfo.longitude
     wx.navigateTo({
-      url: '/pages/detail/index?stallId=' + e.markerId,
+      url: '/pages/detail/index?' + parameter,
     })
   }
 })
