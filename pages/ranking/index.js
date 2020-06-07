@@ -1,4 +1,6 @@
 // pages/ranking/index.js
+import api from '../../utils/request';
+
 Page({
 
   /**
@@ -6,16 +8,27 @@ Page({
    */
   data: {
     userInfo: {},
-    rankList: [],
+    rankInfo: [],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.getRankList();
+
   },
 
+  getRanks() {
+    var that = this;
+    api.get("/integral/getranking").then(res => {
+      if (res.isSuccess) {
+        that.setData({
+          rankInfo: res.data
+        })
+      }
+    });
+
+  },
   //获取排名数据
   getRankList() {
     var that = this;
@@ -42,7 +55,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    var that=this;
+    var that = this;
     wx.getSetting({
       success(res) {
         if (!res.authSetting['scope.userInfo']) {
@@ -50,7 +63,6 @@ Page({
             title: '系统提示',
             content: '请授权小程序获取您的头像',
           })
-          return false;
         }
       }
     })
@@ -61,13 +73,7 @@ Page({
         that.setData({
           userInfo: res.userInfo
         })
-        // var userInfo = res.userInfo
-        // var nickName = userInfo.nickName
-        // var avatarUrl = userInfo.avatarUrl
-        // var gender = userInfo.gender //性别 0：未知、1：男、2：女
-        // var province = userInfo.province
-        // var city = userInfo.city
-        // var country = userInfo.country
+        that.getRanks();
       }
     })
   },
