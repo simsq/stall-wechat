@@ -26,11 +26,12 @@ Page({
     SearchKey: '',
   },
   onLoad: function(options) {
-    this.getAllRemark();
+    
   },
 
   onShow: function() {
     var that = this;
+    that.getAllRemark();
     //判断用户是否同意了授权，如果没有就弹出授权窗口
     wx.getSetting({
       success(res) {
@@ -206,7 +207,7 @@ Page({
     var that = this;
     var stallCode = e.markerId;
     var stallInfo = resultData.find(x => x.code == stallCode);
-    var parameter = 'stallCode=' + stallInfo.code + '&address=' + stallInfo.address + '&latitude=' + stallInfo.latitude + '&longitude=' + stallInfo.longitude
+    var parameter = 'stallCode=' + stallInfo.code + '&address=' + stallInfo.address + '&latitude=' + stallInfo.latitude + '&longitude=' + stallInfo.longitude + '&name='+stallInfo.name
     wx.navigateTo({
       url: '/pages/detail/index?' + parameter,
     })

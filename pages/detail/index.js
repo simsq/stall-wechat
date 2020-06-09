@@ -1,4 +1,5 @@
 const app = getApp();
+import keyword from '../../utils/keyword';
 import api from '../../utils/request';
 Page({
 
@@ -28,13 +29,22 @@ Page({
     that.getComment();
   },
 
-  //获取地摊详情
+  //获取地摊图片
   getImages: function() {
     var that = this;
     api.get("/stall/images?stallCode=" + that.data.stallInfo.stallCode, {}).then(res => {
-      if (res.isSucess) {
+      var path = 'https://sh-res-prd.oss-cn-shanghai.aliyuncs.com/cip/tfs/stall/'
+      var newList = [];
+      if (res.isSuccess) {
+        res.data.forEach(x => {
+          newList.push({
+            id: x.id,
+            type: 'image',
+            url: path + x.stallCode + '/' + x.imageUlr
+          });
+        })
         that.setData({
-          swiperList: res.data
+          swiperList: newList
         });
       }
     });
@@ -42,17 +52,6 @@ Page({
 
   // 初始化towerSwiper
   towerSwiper(name) {
-    this.data.swiperList.push({
-      id: 1,
-      type: 'image',
-      url: 'https://pic.colipu.com/pmspic/ItemPicture/20002/20025/20170/49887/Original/49887_6984102.jpg/DetailBig'
-    });
-    this.data.swiperList.push({
-      id: 2,
-      type: 'image',
-      url: 'https://pic.colipu.com/pmspic/ItemPicture/20004/20046/20301/36539/Original/36539_5748373.jpg/DetailBig'
-    });
-
     let list = this.data[name];
     for (let i = 0; i < list.length; i++) {
       list[i].zIndex = parseInt(list.length / 2) + 1 - Math.abs(i - parseInt(list.length / 2))
@@ -90,9 +89,24 @@ Page({
   //保存签到数据
   qiandaoSave: function() {
     var that = this;
+    var check = false;
+    keyword.sensitiveWords.forEach(function(v) {
+      if (that.data.qiandaoText.indexOf(v) > -1) {
+        check = true
+        return false;
+      }
+    });
+    if (check) {
+      wx.showToast({
+        title: '存在敏感字符',
+        image: '../../images/nodata.png',
+      })
+      return false
+    }
     that.setData({
       modalName2: ''
     })
+
     wx.getUserInfo({
       success: function(res) {
         var userInfo = res.userInfo;
@@ -165,13 +179,13 @@ Page({
             commentList: that.data.commentList.concat(res.data)
           })
         } else {
-          if (that.data.pageIndex>1){
+          if (that.data.pageIndex > 1) {
             wx.showToast({
               title: '没有数据了',
               image: '../../images/nodata.png',
             })
           }
-          
+
         }
 
       }

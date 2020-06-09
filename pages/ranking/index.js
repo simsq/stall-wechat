@@ -22,6 +22,7 @@ Page({
     var that = this;
     api.get("/integral/getranking").then(res => {
       if (res.isSuccess) {
+        console.log(res.data);
         that.setData({
           rankInfo: res.data
         })
@@ -69,7 +70,6 @@ Page({
     //获取用户基础信息
     wx.getUserInfo({
       success: function(res) {
-        console.log(res);
         that.setData({
           userInfo: res.userInfo
         })

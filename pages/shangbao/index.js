@@ -1,5 +1,8 @@
+var plugin = requirePlugin("chatbot");
 const app = getApp();
 import api from '../../utils/request';
+import keyword from '../../utils/keyword';
+
 var locationConvert = require('../../utils/WSCoordinate.js')
 var bmap = require('../../utils/bmap-wx.js');
 var QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
@@ -154,7 +157,30 @@ Page({
   },
   //保存用户上报数据
   save: function() {
+    wx.showLoading({
+      title: '拼命保存中',
+    })
     var that = this;
+
+    var check = false;
+    keyword.sensitiveWords.forEach(function(v) {
+      if (that.data.description.indexOf(v) > -1) {
+        check = true
+        return false;
+      }
+      if (that.data.name.indexOf(v) > -1) {
+        check = true
+        return false;
+      }
+    });
+
+    if (check) {
+      wx.showToast({
+        title: '存在敏感字符',
+        image: '../../images/nodata.png',
+      })
+      return false
+    }
     api.post("/stall/add", {
       'name': that.data.name,
       'description': that.data.description,
@@ -165,8 +191,8 @@ Page({
       if (res.isSuccess) {
         that.saveImages(res.data);
         return false;
-
       } else {
+        wx.hideLoading();
         wx.showModal({
           title: '系统提示',
           content: res.message,
@@ -176,7 +202,6 @@ Page({
   },
   saveImages: function(stallCode) {
     var that = this;
-
     var count = that.data.imgList.length;
     var sucessCount = 0;
     that.data.imgList.forEach(el => {
@@ -190,6 +215,7 @@ Page({
         success: function(res) {
           sucessCount++;
           if (sucessCount == count) {
+            wx.hideLoading();
             wx.showModal({
               title: '系统提示',
               content: '恭喜您上报成功，审核通过后将会在地图上展示',

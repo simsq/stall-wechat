@@ -12,3 +12,6 @@
   justify-content: center;
   max-width: 90%;
 }
+.lable-name{
+  margin-top: 100
+}

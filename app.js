@@ -2,8 +2,6 @@
 
 App({
   onLaunch: function() {
-    
-
     wx.getSystemInfo({
       success: e => {
         this.globalData.StatusBar = e.statusBarHeight;
@@ -16,5 +14,6 @@ App({
   },
   globalData: {
     host: 'http://localhost:50340/api'
+    //host: 'https://api.stall.brcoldchain.com/api'
   }
 })
