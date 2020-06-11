@@ -4,12 +4,14 @@
       <!-- <button size="mini" type="warn" class="button__left" bindtap="getHotData">全国</button>
       <button size="mini" type="primary" class="button__right" bindtap="getTrendData">地区</button> -->
     </view>
-
     <view class="rank__item rank__item--first">
       <image lazy-load="true" class="rank__icon rank__icon--first" src="{{userInfo.avatarUrl}}" />
       <view class="rank__info">
         <view class="rank__name">{{userInfo.nickName}}</view>
         <view class="rank__detail">全国排名第 {{rankInfo.person.ord}} 上海地区排名第 {{rankInfo.person.ord}} 当之无愧的地摊王</view>
+      </view>
+      <view class='shangbao' bindtap="share">
+        <image src='../../images/index/xingqiu.png' style='width:90rpx;height:90rpx;'></image>
       </view>
     </view>
   </view>
@@ -27,6 +29,17 @@
           <text class="text-cut">{{rank.detail}}</text>
         </view>
       </view>
+    </view>
+  </view>
+  <painter palette="{{template}}" bind:imgErr="onImgErr" bind:imgOK="onImgOK" widthPixels="1000" />
+  <view bindtap="saveImg" data-imageurl="{{imageUrl}}" class="b1" hidden="{{isHidden}}">
+    <view class="b2">
+      <image src="{{imageUrl}}" />
+    </view>
+    <view class="t_w">
+      <cover-view class="t_image" bindtap="hideModal">
+        <cover-image src="../../images/error2.png"></cover-image>
+      </cover-view>
     </view>
   </view>
 </view>

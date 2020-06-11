@@ -1,21 +1,12 @@
 {
   "pages": [
+    "pages/ranking/index",
     "pages/index/index",
     "pages/logs/logs",
     "pages/shangbao/index",
     "pages/detail/index",
     "pages/about/home/index",
-    "pages/about/info/index",
-    "pages/ranking/index"
-  ],
-  "plugins": {
-    "chatbot": {
-      "version": "1.1.16",
-      "provider": "wx8c631f7e9f2465e1"
-    }
-  },
-  "requiredBackgroundModes": [
-    "audio"
+    "pages/about/info/index"
   ],
   "tabBar": {
     "cilor": "#000000",
@@ -51,11 +42,11 @@
   },
   "usingComponents": {
     "cu-custom": "/colorui/components/cu-custom"
-  }, 
+  },
   "style": "v2",
   "permission": {
     "scope.userLocation": {
-      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+      "desc": "你的位置信息将用于查找您附近的地摊"
     }
   },
   "sitemapLocation": "sitemap.json"

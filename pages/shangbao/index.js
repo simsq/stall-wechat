@@ -1,8 +1,6 @@
-var plugin = requirePlugin("chatbot");
 const app = getApp();
 import api from '../../utils/request';
 import keyword from '../../utils/keyword';
-
 var locationConvert = require('../../utils/WSCoordinate.js')
 var bmap = require('../../utils/bmap-wx.js');
 var QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');

@@ -65,9 +65,9 @@ Page({
   daohang: function() {
     var that = this;
     wx.openLocation({
-      latitude: parseInt(that.data.stallInfo.latitude),
-      longitude: parseInt(that.data.stallInfo.longitude),
-      scale: 18,
+      latitude: parseFloat(that.data.stallInfo.latitude),
+      longitude: parseFloat(that.data.stallInfo.longitude),
+      scale: 15,
       name: '终点',
       address: that.data.stallInfo.address
     })

@@ -26,7 +26,7 @@ Page({
     SearchKey: '',
   },
   onLoad: function(options) {
-    
+
   },
 
   onShow: function() {
@@ -115,7 +115,7 @@ Page({
           latitude: res.latitude,
           longitude: res.longitude,
         })
-        that.moveTolocation();
+        // that.moveTolocation();
       },
     })
   },
@@ -207,7 +207,7 @@ Page({
     var that = this;
     var stallCode = e.markerId;
     var stallInfo = resultData.find(x => x.code == stallCode);
-    var parameter = 'stallCode=' + stallInfo.code + '&address=' + stallInfo.address + '&latitude=' + stallInfo.latitude + '&longitude=' + stallInfo.longitude + '&name='+stallInfo.name
+    var parameter = 'stallCode=' + stallInfo.code + '&address=' + stallInfo.address + '&latitude=' + stallInfo.latitude + '&longitude=' + stallInfo.longitude + '&name=' + stallInfo.name
     wx.navigateTo({
       url: '/pages/detail/index?' + parameter,
     })
