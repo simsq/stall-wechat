@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/ranking/index",
     "pages/index/index",
+    "pages/ranking/index",   
     "pages/logs/logs",
     "pages/shangbao/index",
     "pages/detail/index",

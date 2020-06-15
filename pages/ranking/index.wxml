@@ -29,6 +29,9 @@
           <text class="text-cut">{{rank.detail}}</text>
         </view>
       </view>
+      <view class="cu-form-group">
+        <view class="cu-tag round bg-red light">{{rank.total}}</view>
+      </view>
     </view>
   </view>
   <painter palette="{{template}}" bind:imgErr="onImgErr" bind:imgOK="onImgOK" widthPixels="1000" />

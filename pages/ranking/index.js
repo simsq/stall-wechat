@@ -122,7 +122,7 @@ Page({
   onReachBottom: function() {
 
   },
-  // 长按保存图片
+  // 保存图片
   saveImg(e) {
     var that = this;
     let url = e.currentTarget.dataset.imageurl;
@@ -135,29 +135,39 @@ Page({
             content: '需要您授权保存相册',
             showCancel: false,
             success: modalSuccess => {
-              wx.openSetting({
-                success(settingdata) {
-                  if (settingdata.authSetting['scope.writePhotosAlbum']) {
-                    wx.showModal({
-                      title: '提示',
-                      content: '获取权限成功,再次点击图片即可保存',
-                      showCancel: false,
-                    })
-                  } else {
-                    wx.showModal({
-                      title: '提示',
-                      content: '获取权限失败，将无法保存到相册哦~',
-                      showCancel: false,
-                    })
-                  }
-                },
-                fail(failData) {
-                  console.log("failData", failData)
-                },
-                complete(finishData) {
-                  console.log("finishData", finishData)
+              wx.authorize({
+                scope: 'scope.writePhotosAlbum',
+                success() {
+                  wx.showModal({
+                    title: '提示',
+                    content: '获取权限成功,再次点击图片即可保存',
+                    showCancel: false,
+                  })
                 }
               })
+              // wx.openSetting({
+              //   success(settingdata) {
+              //     if (settingdata.authSetting['scope.writePhotosAlbum']) {
+              //       wx.showModal({
+              //         title: '提示',
+              //         content: '获取权限成功,再次点击图片即可保存',
+              //         showCancel: false,
+              //       })
+              //     } else {
+              //       wx.showModal({
+              //         title: '提示',
+              //         content: '获取权限失败，将无法保存到相册哦~',
+              //         showCancel: false,
+              //       })
+              //     }
+              //   },
+              //   fail(failData) {
+              //     console.log("failData", failData)
+              //   },
+              //   complete(finishData) {
+              //     console.log("finishData", finishData)
+              //   }
+              // })
             }
           })
         } else {
@@ -303,7 +313,7 @@ Page({
         },
         {
           type: 'text',
-          text: "微信搜索地摊云",
+          text: "微信搜索地摊摆摊",
           css: {
             fontWeight: 'bold',
             color: '#ffffff',
