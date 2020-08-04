@@ -4,3 +4,4 @@
 ### 3.附近的地摊评论功能。
 ### 4.约附近地摊评论过的人
 ### 5.一键分享自己的排名
+<img src="https://github.com/simsq/stall-wechat/blob/master/img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20200804091720.png"/>
